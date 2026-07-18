@@ -24,6 +24,11 @@ app.get("/scrape", async (req, res) => {
     const uniqueEmails = [...new Set(emailMatches)];
     const teleponMatches = body.match(polaTelepon) || [];
     const uniqueTelepons = [...new Set(teleponMatches)];
+    const socialMediaLinks = $('a[href*="facebook.com"], a[href*="twitter.com"], a[href*="instagram.com"], a[href*="linkedin.com"]').map((i, el) => $(el).attr('href')).get();
+    const uniqueSocialMediaLinks = [...new Set(socialMediaLinks)];
+    const openGraphTitle = $('meta[property="og:title"]').attr('content');
+    const openGraphDescription = $('meta[property="og:description"]').attr('content');
+    const openGraphImage = $('meta[property="og:image"]').attr('content');
 
 
     const output = {
@@ -33,7 +38,13 @@ app.get("/scrape", async (req, res) => {
       canonical: canonical,
       favicon: faviconUrl,
       emails: uniqueEmails,
-      telepons: uniqueTelepons
+      telepons: uniqueTelepons,
+      socialMediaLinks: uniqueSocialMediaLinks,
+      openGraph: {
+        title: openGraphTitle,
+        description: openGraphDescription,
+        image: openGraphImage
+      }
     }
     res.status(200).json({ success: true, data: output });
   }
