@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as cheerio from 'cheerio';
 
-export const extractMetadata = async (url) => {
+export const extractWebsite = async (url) => {
   const polaEmail = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
   const polaTelepon = /(?:\(\+?62\)|\+\(62\)|\+?62|0)[\s-]?[0-9]{2,4}[\s-]?[0-9]{3,4}[\s-]?[0-9]{3,4}/g;
 
