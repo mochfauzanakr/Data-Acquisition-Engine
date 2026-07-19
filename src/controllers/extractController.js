@@ -1,6 +1,7 @@
-import { extractMetadata } from "../services/scrapeService.js";
-export const scrape = async (req, res) => {
-  const url = req.query.url;
+import { extractMetadata } from "../services/extractService.js";
+
+export const extractWebMetadata = async (req, res) => {
+  const url = req.body.url;
 
   try {
     if (!url) {

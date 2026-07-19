@@ -1,8 +1,9 @@
 import express from "express";
-import routes from "./routes/scrapeRoute.js";
+import routes from "./routes/extractRoute.js";
 import rateLimiter from "./middlewares/rateLimiter.js";
 
 const app = express();
+app.use(express.json());
 app.use(rateLimiter);
 app.use("/api", routes);
 
